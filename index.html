@@ -19,37 +19,68 @@ body{font-family:'DM Sans',sans-serif;background:#F8FAFC;color:#1e293b}
 <body>
 <div id="app"></div>
 <script>
-// ── Données ──
-const QS=[
+const QS = [
+  // VALEURS & DEVISE
   {id:1,cat:"Valeurs",q:"Quelle est la devise de la République française ?",a:"Liberté, Égalité, Fraternité.",fakes:["Justice, Solidarité, Unité.","Honneur, Patrie, Valeur."],n:"Vivre libre, tous égaux et solidaires.",rq:"Каков девиз Французской Республики?",ra:"Свобода, Равенство, Братство.",det:"Inscrite sur toutes les mairies, c'est le fondement de la vie en France.",img:"https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80"},
-  {id:2,cat:"Laïcité",q:"Que signifie le principe de Laïcité ?",a:"La séparation des Églises et de l'État.",fakes:["L'interdiction de toute religion.","L'obligation d'être catholique."],n:"L'État est neutre. La religion est une affaire personnelle.",rq:"Что означает принцип лаицизма?",ra:"Разделение церквей и государства.",det:"Votée en 1905, l'État ne favorise aucune religion.",img:"https://images.unsplash.com/photo-1543783232-0a440939c63c?auto=format&fit=crop&w=800&q=80"},
+  // LAÏCITÉ
+  {id:2,cat:"Laïcité",q:"Que signifie le principe de laïcité ?",a:"La séparation des Églises et de l'État.",fakes:["L'interdiction de toute religion.","L'obligation d'être catholique."],n:"L'État est neutre. La religion reste une affaire personnelle.",rq:"Что означает принцип лаицизма?",ra:"Разделение церквей и государства.",det:"Votée en 1905, cette loi garantit que l'État ne favorise aucune religion.",img:"https://images.unsplash.com/photo-1543783232-0a440939c63c?auto=format&fit=crop&w=800&q=80"},
+  // SYMBOLES
   {id:3,cat:"Symboles",q:"Qui est Marianne ?",a:"L'allégorie de la République française.",fakes:["La première femme présidente.","Une sainte catholique protectrice."],n:"La femme qui représente la France. Son buste est dans les mairies.",rq:"Кто такая Марианна?",ra:"Аллегория Французской Республики.",det:"Elle porte un bonnet phrygien, symbole des esclaves libérés.",img:"https://images.unsplash.com/photo-1604005953049-7e53f1d7a8d5?auto=format&fit=crop&w=800&q=80"},
-  {id:4,cat:"Histoire",q:"En quelle année a débuté la Révolution française ?",a:"En 1789.",fakes:["En 1815.","En 1848."],n:"1789 : le peuple a pris la Bastille.",rq:"В каком году началась Французская революция?",ra:"В 1789 году.",det:"Fin de la monarchie absolue, naissance de la République.",img:"https://images.unsplash.com/photo-1584027410058-297ce20ec888?auto=format&fit=crop&w=800&q=80"},
-  {id:5,cat:"Institutions",q:"Qui vote les lois en France ?",a:"Le Parlement (Assemblée nationale et Sénat).",fakes:["Le Président de la République seul.","Le Conseil d'État."],n:"Les députés et sénateurs décident des lois.",rq:"Кто принимает законы?",ra:"Парламент (Национальное собрание и Сенат).",det:"Le peuple élit des représentants : c'est la démocratie.",img:"https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=800&q=80"},
-  {id:6,cat:"Symboles",q:"De quelles couleurs est le drapeau français ?",a:"Bleu, Blanc, Rouge.",fakes:["Rouge, Or, Vert.","Bleu, Blanc, Vert."],n:"Le tricolore, symbole de la Révolution.",rq:"Какие цвета флага Франции?",ra:"Синий, Белый, Красный.",det:"Bleu et rouge pour Paris, blanc pour le roi.",img:"https://images.unsplash.com/photo-1551415923-a2297c7fda79?auto=format&fit=crop&w=800&q=80"},
-  {id:7,cat:"Valeurs",q:"Quel est le principe fondamental de la démocratie française ?",a:"La souveraineté appartient au peuple.",fakes:["Le président détient tous les pouvoirs.","L'armée garantit l'ordre."],n:"C'est le peuple qui est le maître.",rq:"Каков основной принцип демократии?",ra:"Суверенитет принадлежит народу.",det:"Article 3 de la Constitution de 1958.",img:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80"},
-  {id:8,cat:"Histoire",q:"Quel est l'hymne national français ?",a:"La Marseillaise.",fakes:["La Brabançonne.","Le Chant du Départ."],n:"La Marseillaise, écrite en 1792.",rq:"Каков национальный гимн Франции?",ra:"Марсельеза.",det:"Composée par Rouget de Lisle, hymne national depuis 1795.",img:"https://images.unsplash.com/photo-1560440021-33f9b867899d?auto=format&fit=crop&w=800&q=80"}
-];
-const MARSE=[
-  {l:"Allons enfants de la Patrie,",s:"Appel à tous les citoyens"},
-  {l:"Le jour de gloire est arrivé !",s:"Le grand jour de la liberté"},
-  {l:"Contre nous de la tyrannie,",s:"Face à l'injustice"},
-  {l:"L'étendard sanglant est levé,",s:"Le drapeau de la résistance"},
-  {l:"Aux armes, citoyens,",s:"Prenez vos défenses"},
-  {l:"Formez vos bataillons,",s:"Unissez-vous ensemble"},
-  {l:"Marchons, marchons !",s:"Avançons avec courage"},
-  {l:"Qu'un sang impur abreuve nos sillons !",s:"Que la liberté triomphe"}
+  {id:4,cat:"Symboles",q:"De quelles couleurs est le drapeau français ?",a:"Bleu, Blanc, Rouge.",fakes:["Rouge, Or, Vert.","Bleu, Blanc, Vert."],n:"Le tricolore, symbole de la Révolution.",rq:"Какие цвета флага Франции?",ra:"Синий, Белый, Красный.",det:"Bleu et rouge pour Paris, blanc pour le roi — unis à la Révolution.",img:"https://images.unsplash.com/photo-1551415923-a2297c7fda79?auto=format&fit=crop&w=800&q=80"},
+  {id:5,cat:"Symboles",q:"Quel est l'hymne national français ?",a:"La Marseillaise.",fakes:["La Brabançonne.","Le Chant du Départ."],n:"La Marseillaise, écrite en 1792, chantée lors des grandes occasions.",rq:"Каков национальный гимн Франции?",ra:"Марсельеза.",det:"Composée par Rouget de Lisle, elle devient hymne national en 1795.",img:"https://images.unsplash.com/photo-1560440021-33f9b867899d?auto=format&fit=crop&w=800&q=80"},
+  {id:6,cat:"Symboles",q:"Quelle est la fête nationale française ?",a:"Le 14 juillet.",fakes:["Le 1er mai.","Le 11 novembre."],n:"Le 14 juillet, on fête la prise de la Bastille en 1789.",rq:"Какой национальный праздник Франции?",ra:"14 июля.",det:"Le 14 juillet 1789 : prise de la Bastille, symbole de la Révolution.",img:"https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80"},
+  // HISTOIRE
+  {id:7,cat:"Histoire",q:"En quelle année a débuté la Révolution française ?",a:"En 1789.",fakes:["En 1815.","En 1848."],n:"1789 : le peuple a pris la Bastille.",rq:"В каком году началась Французская революция?",ra:"В 1789 году.",det:"Fin de la monarchie absolue, naissance de la République.",img:"https://images.unsplash.com/photo-1584027410058-297ce20ec888?auto=format&fit=crop&w=800&q=80"},
+  {id:8,cat:"Histoire",q:"Quelle est la date de la Déclaration des droits de l'homme et du citoyen ?",a:"1789.",fakes:["1804.","1848."],n:"En 1789, la France a proclamé les droits fondamentaux de tout être humain.",rq:"Когда была принята Декларация прав человека?",ra:"1789 год.",det:"Ce texte fondateur pose les bases de la démocratie française.",img:"https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80"},
+  {id:9,cat:"Histoire",q:"Quel général a fondé la Ve République en 1958 ?",a:"Le général de Gaulle.",fakes:["Napoléon Bonaparte.","Georges Pompidou."],n:"De Gaulle a créé notre République actuelle après la crise de 1958.",rq:"Какой генерал основал Пятую Республику?",ra:"Генерал де Голль.",det:"Charles de Gaulle fonde la Ve République et en est le premier président.",img:"https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80"},
+  {id:10,cat:"Histoire",q:"Quel a été le rôle de la France pendant la Seconde Guerre mondiale ?",a:"La France a été occupée par l'Allemagne nazie, puis libérée en 1944.",fakes:["La France est restée neutre tout au long de la guerre.","La France a gagné la guerre seule dès 1940."],n:"La France a été occupée, mais la Résistance et les Alliés l'ont libérée.",rq:"Какова роль Франции во Второй мировой войне?",ra:"Франция была оккупирована Германией, затем освобождена в 1944 году.",det:"Le Débarquement du 6 juin 1944 en Normandie marque le début de la libération.",img:"https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&q=80"},
+  {id:11,cat:"Histoire",q:"Qu'est-ce que l'Abolition de l'esclavage en France ?",a:"L'esclavage a été définitivement aboli en France en 1848.",fakes:["L'esclavage n'a jamais existé en France.","L'esclavage a été aboli en 1789."],n:"En 1848, la France a libéré tous les esclaves dans ses colonies.",rq:"Что такое отмена рабства во Франции?",ra:"Рабство было окончательно отменено во Франции в 1848 году.",det:"Victor Schœlcher obtient l'abolition définitive de l'esclavage le 27 avril 1848.",img:"https://images.unsplash.com/photo-1591522810850-58128c5fb089?auto=format&fit=crop&w=800&q=80"},
+  // INSTITUTIONS
+  {id:12,cat:"Institutions",q:"Qui vote les lois en France ?",a:"Le Parlement (Assemblée nationale et Sénat).",fakes:["Le Président de la République seul.","Le Conseil d'État."],n:"Les députés et sénateurs décident des lois.",rq:"Кто принимает законы?",ra:"Парламент (Национальное собрание и Сенат).",det:"Le peuple élit des représentants pour voter les règles : c'est la démocratie.",img:"https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?auto=format&fit=crop&w=800&q=80"},
+  {id:13,cat:"Institutions",q:"Quel est le rôle du Président de la République ?",a:"Il est le chef de l'État, garant des institutions et de la défense nationale.",fakes:["Il vote les lois au Parlement.","Il dirige les tribunaux."],n:"Le Président est le chef suprême de la France, il protège la Constitution.",rq:"Какова роль Президента Республики?",ra:"Он глава государства, гарант институтов и национальной обороны.",det:"Élu pour 5 ans au suffrage universel direct, il nomme le Premier ministre.",img:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80"},
+  {id:14,cat:"Institutions",q:"Quel est le rôle du Premier ministre ?",a:"Il dirige le gouvernement et applique les lois.",fakes:["Il préside l'Assemblée nationale.","Il est le chef des armées."],n:"Le Premier ministre gère le pays au quotidien avec son gouvernement.",rq:"Какова роль Премьер-министра?",ra:"Он руководит правительством и применяет законы.",det:"Le Premier ministre est nommé par le Président et dirige l'action du gouvernement.",img:"https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=800&q=80"},
+  {id:15,cat:"Institutions",q:"Qu'est-ce que le Conseil constitutionnel ?",a:"Il veille à ce que les lois respectent la Constitution.",fakes:["C'est le plus haut tribunal pénal.","C'est le conseil des ministres."],n:"Il vérifie que les lois votées respectent nos droits fondamentaux.",rq:"Что такое Конституционный совет?",ra:"Он следит за тем, чтобы законы соответствовали Конституции.",det:"Créé en 1958, il est le gardien de la Constitution et des libertés fondamentales.",img:"https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80"},
+  {id:16,cat:"Institutions",q:"Qu'est-ce que le suffrage universel ?",a:"Le droit de vote accordé à tous les citoyens majeurs.",fakes:["Le droit de vote réservé aux hommes.","Le vote des seuls propriétaires."],n:"En France, tous les adultes peuvent voter, sans distinction.",rq:"Что такое всеобщее избирательное право?",ra:"Право голоса, предоставленное всем совершеннолетним гражданам.",det:"Le suffrage universel masculin date de 1848, les femmes votent depuis 1944.",img:"https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=800&q=80"},
+  // DROITS & LIBERTÉS
+  {id:17,cat:"Droits",q:"Quels sont les grands principes des droits de l'homme ?",a:"Liberté, égalité, dignité, fraternité et non-discrimination.",fakes:["Obéissance, travail et propriété.","Mérite, compétition et récompense."],n:"Chaque être humain naît libre et a les mêmes droits, sans discrimination.",rq:"Каковы основные принципы прав человека?",ra:"Свобода, равенство, достоинство, братство и недискриминация.",det:"Ces principes sont inscrits dans la DDHC de 1789 et repris par la Constitution.",img:"https://images.unsplash.com/photo-1591522810850-58128c5fb089?auto=format&fit=crop&w=800&q=80"},
+  {id:18,cat:"Droits",q:"Qu'est-ce que l'égalité homme-femme en France ?",a:"Les femmes et les hommes ont les mêmes droits dans tous les domaines.",fakes:["Les femmes ont des droits différents en matière de travail.","L'égalité est un principe moral sans valeur légale."],n:"En France, une femme a exactement les mêmes droits qu'un homme.",rq:"Что такое равенство мужчин и женщин во Франции?",ra:"Женщины и мужчины имеют одинаковые права во всех областях.",det:"L'égalité homme-femme est un principe constitutionnel depuis 1999.",img:"https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80"},
+  {id:19,cat:"Droits",q:"La France reconnaît-elle le droit d'asile ?",a:"Oui, la France accueille toute personne persécutée pour ses opinions ou sa religion.",fakes:["Non, la France n'a pas de politique d'asile.","Oui, mais uniquement pour les Européens."],n:"La France protège ceux qui fuient les persécutions dans leur pays.",rq:"Признаёт ли Франция право убежища?",ra:"Да, Франция принимает лиц, преследуемых за свои убеждения или религию.",det:"Le droit d'asile est inscrit dans le préambule de la Constitution de 1946.",img:"https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=800&q=80"},
+  // VALEURS RÉPUBLICAINES
+  {id:20,cat:"Valeurs",q:"Quel est le principe fondamental de la démocratie française ?",a:"La souveraineté appartient au peuple.",fakes:["Le président détient tous les pouvoirs.","L'armée garantit l'ordre démocratique."],n:"C'est le peuple qui est le maître, pas un roi ni un dictateur.",rq:"Каков основной принцип французской демократии?",ra:"Суверенитет принадлежит народу.",det:"Article 3 de la Constitution de 1958 : la souveraineté nationale appartient au peuple.",img:"https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=800&q=80"},
+  {id:21,cat:"Valeurs",q:"Qu'est-ce que la solidarité nationale en France ?",a:"C'est le principe selon lequel chacun contribue et reçoit selon ses besoins.",fakes:["C'est une aide réservée aux Français de souche.","C'est une cotisation volontaire et facultative."],n:"En France, on s'entraide : les plus aidés contribuent plus pour les plus démunis.",rq:"Что такое национальная солидарность?",ra:"Принцип, по которому каждый вносит вклад и получает помощь по мере необходимости.",det:"La Sécurité sociale (créée en 1945) en est l'expression concrète.",img:"https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80"},
+  {id:22,cat:"Valeurs",q:"Que signifie l'intégration républicaine ?",a:"Adhérer aux valeurs de la République et respecter ses lois.",fakes:["Abandonner sa culture d'origine.","Parler français sans accent."],n:"S'intégrer, c'est respecter les lois françaises et partager ses valeurs.",rq:"Что означает республиканская интеграция?",ra:"Принять ценности Республики и уважать её законы.",det:"L'intégration ne demande pas d'effacer sa culture, mais de respecter les lois communes.",img:"https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?auto=format&fit=crop&w=800&q=80"},
+  // EUROPE
+  {id:23,cat:"Europe",q:"Quelle est la monnaie utilisée en France ?",a:"L'euro (€).",fakes:["Le franc.","La livre sterling."],n:"Depuis 2002, la France utilise l'euro comme toute la zone euro.",rq:"Какая валюта используется во Франции?",ra:"Евро (€).",det:"La France a adopté l'euro le 1er janvier 2002 en remplacement du franc.",img:"https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&w=800&q=80"},
+  {id:24,cat:"Europe",q:"La France est-elle membre de l'Union européenne ?",a:"Oui, la France est membre fondateur de l'Union européenne.",fakes:["Non, la France a quitté l'UE.","Oui, mais elle a rejoint l'UE en 1990."],n:"La France est l'un des pays fondateurs de l'Europe unie.",rq:"Является ли Франция членом Европейского союза?",ra:"Да, Франция является основателем Европейского союза.",det:"La France est l'un des 6 pays fondateurs de la CEE (1957), ancêtre de l'UE.",img:"https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=800&q=80"},
+  // SOCIÉTÉ
+  {id:25,cat:"Société",q:"Quelles sont les obligations des parents envers leurs enfants en France ?",a:"Les nourrir, les loger, les éduquer et les protéger.",fakes:["Leur transmettre une religion obligatoirement.","Les inscrire dans une école privée."],n:"Les parents doivent prendre soin de leurs enfants et les scolariser.",rq:"Каковы обязанности родителей перед детьми?",ra:"Кормить, жить, воспитывать и защищать.",det:"La scolarité est obligatoire de 3 à 16 ans en France.",img:"https://images.unsplash.com/photo-1491013516836-7db643ee125a?auto=format&fit=crop&w=800&q=80"},
+  {id:26,cat:"Société",q:"Qu'est-ce que la Protection sociale en France ?",a:"Un système qui couvre les risques maladie, chômage, retraite et famille.",fakes:["Une aide réservée aux fonctionnaires.","Un système privé d'assurance volontaire."],n:"La Sécu protège tous les habitants contre les coups durs de la vie.",rq:"Что такое социальная защита во Франции?",ra:"Система, покрывающая риски болезни, безработицы, пенсии и семьи.",det:"La Sécurité sociale française est l'une des plus complètes au monde.",img:"https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?auto=format&fit=crop&w=800&q=80"},
+  {id:27,cat:"Société",q:"Quel est le rôle de l'école en France ?",a:"Instruire, éduquer aux valeurs républicaines et favoriser l'égalité des chances.",fakes:["Transmettre une religion officielle.","Préparer uniquement au monde du travail."],n:"L'école apprend à lire, à réfléchir et à devenir citoyen.",rq:"Какова роль школы во Франции?",ra:"Обучать, воспитывать в республиканских ценностях и способствовать равенству.",det:"L'école publique est gratuite, laïque et obligatoire de 3 à 16 ans.",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"},
+  {id:28,cat:"Société",q:"Qu'est-ce que la liberté de la presse en France ?",a:"Le droit d'informer librement sans censure de l'État.",fakes:["L'obligation pour les journaux d'obtenir l'accord du gouvernement.","Un droit réservé aux journaux publics."],n:"Les journalistes peuvent écrire et publier librement en France.",rq:"Что такое свобода прессы во Франции?",ra:"Право свободно информировать без государственной цензуры.",det:"La liberté de la presse est garantie par la loi du 29 juillet 1881.",img:"https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"},
+  // NATURALISATION
+  {id:29,cat:"Naturalisation",q:"Quelles sont les conditions principales pour obtenir la nationalité française ?",a:"Résider légalement en France depuis au moins 5 ans, parler français et adhérer aux valeurs républicaines.",fakes:["Être né en France et avoir des parents français.","Résider en France depuis 10 ans sans condition de langue."],n:"Pour devenir français, il faut vivre en France, parler la langue et respecter ses valeurs.",rq:"Каковы основные условия получения французского гражданства?",ra:"Проживание во Франции не менее 5 лет, знание французского и принятие республиканских ценностей.",det:"Le délai peut être réduit à 2 ans en cas d'intégration remarquable.",img:"https://images.unsplash.com/photo-1464746133101-a2c3f88e0dd9?auto=format&fit=crop&w=800&q=80"},
+  {id:30,cat:"Naturalisation",q:"Quels droits acquiert-on en devenant citoyen français ?",a:"Le droit de vote, d'éligibilité, et la protection consulaire à l'étranger.",fakes:["Uniquement le droit de travailler en France.","Le droit de vote mais pas d'éligibilité."],n:"Citoyen français, vous pouvez voter, vous présenter aux élections et être protégé à l'étranger.",rq:"Какие права приобретаются при получении французского гражданства?",ra:"Право голоса, право быть избранным и консульская защита за рубежом.",det:"La nationalité française donne aussi accès à la fonction publique.",img:"https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&w=800&q=80"}
 ];
 
-// ── State ──
-let state={view:'home',showRu:false,search:'',quiz:{order:[],idx:0,score:0,answered:false,selected:null,timer:30,auto:true,memo:'',memoLoading:false},chat:[],chatLoading:false,aiExpand:{},saved:null,apiKey:''};
+const MARSE=[
+  {l:"Allons enfants de la Patrie,",s:"Appel à tous les citoyens français"},
+  {l:"Le jour de gloire est arrivé !",s:"Le grand jour de la liberté"},
+  {l:"Contre nous de la tyrannie,",s:"Face à l'injustice et l'oppression"},
+  {l:"L'étendard sanglant est levé,",s:"Le drapeau de la résistance est levé"},
+  {l:"Aux armes, citoyens,",s:"Prenez vos défenses, citoyens"},
+  {l:"Formez vos bataillons,",s:"Unissez-vous tous ensemble"},
+  {l:"Marchons, marchons !",s:"Avançons avec courage"},
+  {l:"Qu'un sang impur abreuve nos sillons !",s:"Que la liberté triomphe sur nos terres"}
+];
+
+let state={view:'home',showRu:false,search:'',quiz:{order:[],idx:0,score:0,answered:false,selected:null,timer:30,auto:true,memo:'',memoLoading:false},chat:[],chatLoading:false,aiExpand:{},saved:null,apiKey:'',showKeyModal:false};
 
 function load(){
-  try{const s=localStorage.getItem('lm_s');if(s)state.saved=JSON.parse(s);}catch{}
-  try{const c=localStorage.getItem('lm_c');if(c)state.chat=JSON.parse(c);}catch{}
-  try{const k=localStorage.getItem('lm_k');if(k){state.apiKey=k;}}catch{}
+  try{const s=localStorage.getItem('lm_s3');if(s)state.saved=JSON.parse(s);}catch{}
+  try{const c=localStorage.getItem('lm_c3');if(c)state.chat=JSON.parse(c);}catch{}
+  try{const k=localStorage.getItem('lm_k');if(k)state.apiKey=k;}catch{}
 }
-function save(){try{localStorage.setItem('lm_c',JSON.stringify(state.chat));}catch{}}
+function saveChat(){try{localStorage.setItem('lm_c3',JSON.stringify(state.chat));}catch{}}
 
 function speak(t){
   if(!window.speechSynthesis)return;
@@ -65,7 +96,7 @@ function speak(t){
 async function callClaude(prompt){
   if(!state.apiKey)return"Ajoutez votre clé Anthropic via le bouton ⚙️ pour activer l'IA.";
   try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":state.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-calls":"true"},body:JSON.stringify({model:"claude-haiku-4-5",max_tokens:400,system:"Tu es un agent de préfecture bienveillant. Tu aides Lioudmila (russe) à préparer son entretien de naturalisation. Réponds en français, 3 phrases max, ton encourageant.",messages:[{role:"user",content:prompt}]})});
+    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json","x-api-key":state.apiKey,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-calls":"true"},body:JSON.stringify({model:"claude-haiku-4-5",max_tokens:400,system:"Tu es un agent de préfecture bienveillant. Tu aides Lioudmila (d'origine russe) à préparer son entretien de naturalisation française. Réponds en français, 3 phrases max, sois chaleureux et encourageant.",messages:[{role:"user",content:prompt}]})});
     if(!r.ok)return"Assistant indisponible.";
     const d=await r.json();return d.content?.[0]?.text||"Erreur.";
   }catch{return"Assistant indisponible.";}
@@ -77,30 +108,24 @@ function shuffle(arr,seed){
   return s;
 }
 
-// ── Render ──
+function esc(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;');}
+
 function render(){
-  const app=document.getElementById('app');
-  app.innerHTML='';
-  const el=document.createElement('div');
-  el.innerHTML=getHTML();
-  app.appendChild(el);
-  bindEvents();
-  if(state.view==='sim')scrollChat();
+  document.getElementById('app').innerHTML=getHTML();
+  if(state.view==='sim')setTimeout(()=>{const e=document.getElementById('chatEnd');if(e)e.scrollIntoView({behavior:'smooth'});},80);
 }
 
 function nav(){
-  return `<nav style="background:#0A2540" class="text-white px-4 py-3 sticky top-0 z-50 shadow-xl">
+  return`<nav style="background:#0A2540" class="text-white px-4 py-3 sticky top-0 z-50 shadow-xl">
     <div class="max-w-5xl mx-auto flex justify-between items-center">
       <div class="flex items-center gap-3 cursor-pointer" onclick="go('home')">
-        <div style="background:#D4AF37" class="p-2 rounded-full">❤️</div>
+        <div style="background:#D4AF37" class="p-2 rounded-full text-base">❤️</div>
         <span class="font-black text-lg hidden sm:block">Pour <span style="color:#D4AF37">Lioudmila</span></span>
       </div>
       <div class="flex items-center gap-2">
-        <button onclick="toggleKey()" class="p-2 rounded-full hover:bg-white/10 text-sm" title="Clé API">${state.apiKey?'🟢':'⚙️'}</button>
-        <button onclick="toggleRu()" style="border-color:#D4AF37;color:${state.showRu?'#0A2540':'#D4AF37'};background:${state.showRu?'#D4AF37':'transparent'}" class="px-3 py-1 rounded-full text-xs font-bold border transition">
-          🌐 ${state.showRu?'FR/RU':'FR'}
-        </button>
-        <button onclick="go('home')" class="p-2 hover:text-yellow-400 bg-white/5 rounded-full">🏠</button>
+        <button onclick="toggleKey()" class="p-2 rounded-full hover:bg-white/10 text-lg" title="Clé API Anthropic">${state.apiKey?'🟢':'⚙️'}</button>
+        <button onclick="toggleRu()" style="border:1px solid #D4AF37;color:${state.showRu?'#0A2540':'#D4AF37'};background:${state.showRu?'#D4AF37':'transparent'}" class="px-3 py-1 rounded-full text-xs font-bold transition">🌐 ${state.showRu?'FR/RU':'FR'}</button>
+        <button onclick="go('home')" class="p-2 hover:text-yellow-400 bg-white/5 rounded-full text-lg">🏠</button>
       </div>
     </div>
   </nav>`;
@@ -108,14 +133,14 @@ function nav(){
 
 function keyModal(){
   if(!state.showKeyModal)return'';
-  return `<div class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+  return`<div class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onclick="if(event.target===this)closeKey()">
     <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl">
-      <h3 class="text-lg font-black text-slate-800 mb-2">🔑 Clé API Anthropic</h3>
-      <p class="text-sm text-slate-500 mb-4">Pour activer l'agent virtuel et les explications IA. Stockée localement, jamais envoyée ailleurs.</p>
-      <input id="keyInput" type="password" value="${state.apiKey}" placeholder="sk-ant-..." class="w-full border border-slate-200 rounded-xl p-3 text-sm outline-none focus:border-blue-500 mb-4"/>
+      <h3 class="text-lg font-black text-slate-800 mb-1">🔑 Clé API Anthropic</h3>
+      <p class="text-sm text-slate-500 mb-4">Pour activer l'agent virtuel et les explications IA. Stockée localement dans votre navigateur, jamais envoyée ailleurs.</p>
+      <input id="keyInput" type="password" value="${state.apiKey}" placeholder="sk-ant-..." class="w-full border border-slate-200 rounded-xl p-3 text-sm outline-none focus:border-blue-500 mb-4" onkeydown="if(event.key==='Enter')saveKey()"/>
       <div class="flex gap-2">
-        <button onclick="saveKey()" class="flex-1 text-white py-2 rounded-xl font-bold text-sm" style="background:#0055A4">Enregistrer</button>
-        <button onclick="closeKey()" class="px-4 py-2 bg-slate-100 rounded-xl text-sm font-bold">Annuler</button>
+        <button onclick="saveKey()" class="flex-1 text-white py-2.5 rounded-xl font-bold text-sm" style="background:#0055A4">Enregistrer</button>
+        <button onclick="closeKey()" class="px-4 py-2 bg-slate-100 rounded-xl text-sm font-bold text-slate-600">Annuler</button>
       </div>
     </div>
   </div>`;
@@ -132,60 +157,69 @@ function getHTML(){
   return homeHTML();
 }
 
+// ─── HOME ───
 function homeHTML(){
-  return `${keyModal()}${nav()}
+  const cats=[...new Set(QS.map(q=>q.cat))];
+  const hasSave=state.saved&&state.saved.idx>0;
+  return`${keyModal()}${nav()}
   <div style="background:linear-gradient(135deg,#F8FAFC 0%,#EFF6FF 100%)" class="min-h-screen">
-  <main class="max-w-5xl mx-auto p-6 flex flex-col items-center gap-10 pt-16">
-    <div class="text-center">
-      <h1 class="text-5xl md:text-6xl font-black leading-tight" style="color:#0A2540">
-        Bonjour, <span style="color:#0055A4">Lioudmila</span> 👋
-      </h1>
-      <p class="mt-4 text-xl text-slate-500">Préparez votre entretien de naturalisation sereinement</p>
+  <main class="max-w-5xl mx-auto p-6 flex flex-col items-center gap-10 pt-14">
+    <div class="text-center space-y-3">
+      <h1 class="text-5xl md:text-6xl font-black leading-tight" style="color:#0A2540">Bonjour, <span style="color:#0055A4">Lioudmila</span> 👋</h1>
+      <p class="text-xl text-slate-500">Préparez votre entretien de naturalisation sereinement</p>
+      <p class="text-sm text-slate-400">${QS.length} questions officielles · ${cats.length} thèmes</p>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full">
-      ${card('book','📚','Le Livre Illustré',`${QS.length} fiches détaillées`,'#0055A4')}
-      ${quizCard()}
-      ${card('sim','💬','Agent Virtuel ✨',state.chat.length?`${state.chat.length} messages`:'Simulez l\'entretien','#D4AF37')}
-      ${card('marse','🎵','La Marseillaise','Écouter & apprendre','#EF4135')}
+      <div onclick="go('book')" class="bg-white border-2 border-slate-100 p-7 rounded-3xl shadow-sm flex flex-col items-center gap-4 cursor-pointer hover:shadow-xl" onmouseover="this.style.borderColor='#0055A4'" onmouseout="this.style.borderColor='#f1f5f9'" style="transition:border-color .2s">
+        <div class="text-4xl">📚</div>
+        <span class="text-lg font-black text-center" style="color:#0A2540">Le Livre Illustré</span>
+        <span class="text-xs text-slate-400">${QS.length} fiches · ${cats.length} thèmes</span>
+      </div>
+      <div class="bg-white border-2 border-slate-100 p-7 rounded-3xl shadow-sm flex flex-col items-center gap-4" onmouseover="this.style.borderColor='#0055A4'" onmouseout="this.style.borderColor='#f1f5f9'" style="transition:border-color .2s">
+        <div class="text-4xl">🎯</div>
+        <span class="text-lg font-black" style="color:#0A2540">Quiz Visuel</span>
+        <div class="flex flex-col gap-2 w-full mt-auto">
+          ${hasSave?`<button onclick="startQuiz(true)" class="w-full bg-green-100 text-green-700 py-2 rounded-xl font-bold text-sm hover:bg-green-200">↩️ Continuer (${state.saved.idx}/${QS.length})</button>`:''}
+          <button onclick="startQuiz(false)" class="w-full text-white py-2 rounded-xl font-bold text-sm hover:opacity-90" style="background:#0055A4">▶️ Nouveau quiz</button>
+        </div>
+      </div>
+      <div onclick="go('sim')" class="bg-white border-2 border-slate-100 p-7 rounded-3xl shadow-sm flex flex-col items-center gap-4 cursor-pointer hover:shadow-xl" onmouseover="this.style.borderColor='#D4AF37'" onmouseout="this.style.borderColor='#f1f5f9'" style="transition:border-color .2s">
+        <div class="text-4xl">💬</div>
+        <span class="text-lg font-black text-center" style="color:#0A2540">Agent Virtuel ✨</span>
+        <span class="text-xs text-slate-400">${state.chat.length?state.chat.length+' messages':'Simulez l\'entretien'}</span>
+      </div>
+      <div onclick="go('marse')" class="bg-white border-2 border-slate-100 p-7 rounded-3xl shadow-sm flex flex-col items-center gap-4 cursor-pointer hover:shadow-xl" onmouseover="this.style.borderColor='#EF4135'" onmouseout="this.style.borderColor='#f1f5f9'" style="transition:border-color .2s">
+        <div class="text-4xl">🎵</div>
+        <span class="text-lg font-black text-center" style="color:#0A2540">La Marseillaise 🇫🇷</span>
+        <span class="text-xs text-slate-400">Écouter & apprendre</span>
+      </div>
     </div>
     ${!state.apiKey?`<div class="bg-amber-50 border border-amber-200 rounded-2xl px-5 py-3 text-amber-800 text-sm text-center max-w-lg">
-      <strong>ℹ️</strong> Pour activer l'IA, cliquez sur ⚙️ en haut à droite et entrez votre clé Anthropic.
+      <strong>ℹ️</strong> Pour activer l'IA (agent virtuel, explications, astuces), cliquez sur ⚙️ en haut à droite et entrez votre clé Anthropic.
     </div>`:''}
   </main></div>`;
 }
 
-function card(id,icon,label,sub,color){
-  return `<div onclick="go('${id}')" class="bg-white border-2 border-slate-100 p-7 rounded-3xl shadow-sm flex flex-col items-center gap-4 cursor-pointer transition-all hover:shadow-xl hover:border-2" style="transition:border-color .2s" onmouseover="this.style.borderColor='${color}'" onmouseout="this.style.borderColor='#f1f5f9'">
-    <div class="text-4xl">${icon}</div>
-    <span class="text-lg font-black text-center" style="color:#0A2540">${label}</span>
-    <span class="text-xs text-slate-400">${sub}</span>
-  </div>`;
-}
-
-function quizCard(){
-  const hasSave=state.saved&&state.saved.idx>0;
-  return `<div class="bg-white border-2 border-slate-100 p-7 rounded-3xl shadow-sm flex flex-col items-center gap-4 transition-all hover:shadow-xl" onmouseover="this.style.borderColor='#0055A4'" onmouseout="this.style.borderColor='#f1f5f9'">
-    <div class="text-4xl">🎯</div>
-    <span class="text-lg font-black" style="color:#0A2540">Quiz Visuel</span>
-    <div class="flex flex-col gap-2 w-full mt-auto">
-      ${hasSave?`<button onclick="startQuiz(true)" class="w-full bg-green-100 text-green-700 py-2 rounded-xl font-bold text-sm">↩️ Continuer (${state.saved.idx}/${QS.length})</button>`:''}
-      <button onclick="startQuiz(false)" class="w-full text-white py-2 rounded-xl font-bold text-sm" style="background:#0055A4">▶️ Nouveau quiz</button>
-    </div>
-  </div>`;
-}
-
+// ─── LIVRE ───
 function bookHTML(){
   const t=state.search.toLowerCase();
-  const filtered=QS.filter(q=>q.q.toLowerCase().includes(t)||q.a.toLowerCase().includes(t)||q.cat.toLowerCase().includes(t));
-  return `${keyModal()}${nav()}
+  const cats=[...new Set(QS.map(q=>q.cat))];
+  const filtered=QS.filter(q=>!t||q.q.toLowerCase().includes(t)||q.a.toLowerCase().includes(t)||q.cat.toLowerCase().includes(t)||q.det.toLowerCase().includes(t));
+  return`${keyModal()}${nav()}
   <div class="bg-white border-b p-4 shadow-sm sticky top-16 z-40">
-    <div class="max-w-4xl mx-auto relative">
-      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
-      <input id="searchBox" type="text" value="${state.search}" placeholder="Chercher (Laïcité, Marianne…)" oninput="doSearch(this.value)" class="w-full bg-slate-100 border border-slate-200 p-2.5 pl-10 rounded-full text-sm outline-none focus:border-blue-500" autofocus/>
-      ${state.search?`<button onclick="doSearch('')" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">✕</button>`:''}
+    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row gap-3">
+      <div class="relative flex-1">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">🔍</span>
+        <input id="searchBox" type="text" value="${state.search}" placeholder="Rechercher (Laïcité, vote, 1789…)" oninput="doSearch(this.value)" class="w-full bg-slate-100 border border-slate-200 p-2.5 pl-9 rounded-full text-sm outline-none focus:border-blue-500" autofocus/>
+        ${state.search?`<button onclick="doSearch('')" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">✕</button>`:''}
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        ${cats.map(c=>`<button onclick="doSearch('${esc(c)}')" class="px-3 py-1.5 rounded-full text-xs font-bold border transition ${state.search===c?'text-white border-blue-600':'bg-white border-slate-200 text-slate-600 hover:border-blue-400'}" ${state.search===c?'style="background:#0055A4"':''}>${c}</button>`).join('')}
+      </div>
     </div>
   </div>
-  <div class="max-w-4xl mx-auto p-4 space-y-5">
+  <div class="max-w-4xl mx-auto p-4 space-y-5 pb-10">
+    <p class="text-xs text-slate-400 text-center">${filtered.length} fiche${filtered.length>1?'s':''} affichée${filtered.length>1?'s':''}</p>
     ${filtered.length?filtered.map(item=>`
     <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-200 fade">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
@@ -195,7 +229,7 @@ function bookHTML(){
           ${state.showRu?`<p class="text-sm text-blue-600 italic">🇷🇺 ${item.rq}</p>`:''}
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div class="bg-blue-50 p-3 rounded-xl border-l-4 border-blue-600">
-              <div class="text-xs font-bold text-blue-600 mb-1">✅ RÉPONSE OFFICIELLE</div>
+              <div class="text-xs font-bold text-blue-700 mb-1">✅ RÉPONSE OFFICIELLE</div>
               <p class="font-bold text-sm" style="color:#0A2540">${item.a}</p>
               ${state.showRu?`<p class="text-xs text-blue-500 mt-1">${item.ra}</p>`:''}
             </div>
@@ -205,68 +239,62 @@ function bookHTML(){
             </div>
           </div>
           <p class="text-xs text-slate-500 italic bg-slate-50 p-3 rounded-xl">${item.det}</p>
-          <div class="flex gap-2 flex-wrap">
-            <button onclick="speak('${item.q.replace(/'/g,"\\'")}. ${item.a.replace(/'/g,"\\'")}')" class="text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1.5 rounded-xl">🔊 Écouter</button>
-            ${renderExplain(item.id,item.q,item.a)}
+          <div class="flex gap-2 flex-wrap items-center">
+            <button onclick="speak('${esc(item.q)}. ${esc(item.a)}')" class="text-xs font-bold bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1.5 rounded-xl hover:bg-blue-100">🔊 Écouter</button>
+            ${renderExp(item)}
           </div>
         </div>
         <div>
-          <img src="${item.img}" alt="${item.cat}" class="w-full h-40 lg:h-full object-cover rounded-2xl shadow-md" loading="lazy" onerror="this.style.display='none'"/>
+          <img src="${item.img}" alt="${item.cat}" class="w-full h-40 lg:h-full min-h-[120px] object-cover rounded-2xl shadow-md" loading="lazy" onerror="this.style.display='none'"/>
         </div>
       </div>
-    </div>`).join(''):`<div class="text-center py-16 text-slate-400">
-      <div class="text-5xl mb-3">🔍</div>
-      <p class="font-bold">Aucun résultat pour « ${state.search} »</p>
-      <button onclick="doSearch('')" class="mt-3 text-blue-600 underline text-sm">Effacer</button>
-    </div>`}
+    </div>`).join(''):`<div class="text-center py-16 text-slate-400"><div class="text-5xl mb-3">🔍</div><p class="font-bold">Aucun résultat pour « ${state.search} »</p><button onclick="doSearch('')" class="mt-3 text-blue-600 underline text-sm">Effacer</button></div>`}
   </div>`;
 }
 
-function renderExplain(id,q,a){
-  const exp=state.aiExpand[id];
-  if(!exp)return`<button onclick="explainItem(${id},'${q.replace(/'/g,"\\'")}','${a.replace(/'/g,"\\'")}')" class="text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1.5 rounded-xl">✨ Explication IA</button>`;
+function renderExp(item){
+  const exp=state.aiExpand[item.id];
+  if(!exp)return`<button onclick="explainItem(${item.id},'${esc(item.q)}','${esc(item.a)}')" class="text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200 px-3 py-1.5 rounded-xl hover:bg-amber-100">✨ Explication IA</button>`;
   if(exp==='loading')return`<span class="text-xs text-amber-600 flex items-center gap-1"><span class="spin">⏳</span> Génération…</span>`;
-  return`<div class="w-full p-3 bg-amber-50 border border-amber-100 rounded-xl flex gap-2">
-    <p class="text-xs text-slate-700 italic flex-1">${exp}</p>
-    <button onclick="clearExplain(${id})" class="text-slate-400 text-xs shrink-0">✕</button>
-  </div>`;
+  return`<div class="w-full p-3 bg-amber-50 border border-amber-100 rounded-xl flex gap-2"><p class="text-xs text-slate-700 italic flex-1">${exp}</p><button onclick="clearExp(${item.id})" class="text-slate-400 text-xs shrink-0 hover:text-slate-600">✕</button></div>`;
 }
 
+// ─── QUIZ ───
 function quizHTML(){
   const q=state.quiz;
   if(!q.order.length)return homeHTML();
   const cq=QS[q.order[q.idx]];
   const opts=shuffle([cq.a,...cq.fakes],cq.id*37+q.idx);
   const pct=Math.round(((q.idx+1)/QS.length)*100);
-  return `${keyModal()}${nav()}
+  return`${keyModal()}${nav()}
   <div class="bg-white border-b shadow-sm">
-    <div class="h-1 progress" style="background:#0055A4;width:${pct}%"></div>
+    <div class="h-1.5 progress" style="background:#0055A4;width:${pct}%"></div>
     <div class="p-3 flex justify-between items-center max-w-2xl mx-auto">
-      <span class="font-bold text-xs text-blue-600">${q.idx+1}/${QS.length} — Score : ${q.score}</span>
+      <span class="font-bold text-xs text-blue-600 uppercase">${q.idx+1} / ${QS.length} — Score : ${q.score}</span>
       <div class="flex gap-2 items-center">
         <button onclick="toggleAuto()" class="px-2 py-1 rounded-lg border text-xs font-bold ${q.auto?'bg-blue-50 text-blue-600 border-blue-200':'text-slate-400 border-slate-300'}">${q.auto?'⏩ Auto':'⏸ Manuel'}</button>
         <button onclick="pauseQuiz()" class="px-2 py-1 bg-slate-100 border border-slate-200 rounded-lg text-xs font-bold text-slate-600">💾 Pause</button>
-        <span class="font-mono font-bold text-sm px-2 py-0.5 rounded-full ${q.timer<10?'text-red-500':'text-slate-700'}">${q.timer}s</span>
+        <span class="font-mono font-bold text-sm px-2 ${q.timer<10?'text-red-500':'text-slate-700'}">${q.timer}s</span>
       </div>
     </div>
   </div>
-  <div class="max-w-2xl mx-auto p-4 flex flex-col gap-4">
+  <div class="max-w-2xl mx-auto p-4 flex flex-col gap-4 pb-10">
     <div class="relative h-44 rounded-3xl overflow-hidden shadow-md">
-      <img src="${cq.img}" class="w-full h-full object-cover"/>
+      <img src="${cq.img}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80'"/>
       <div class="absolute inset-0" style="background:linear-gradient(to top,#0A2540,rgba(10,37,64,.4),transparent)"></div>
       <span class="absolute top-3 left-3 bg-white/90 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full">${cq.cat}</span>
       <h3 class="absolute bottom-4 left-4 right-4 text-xl font-black text-white leading-tight drop-shadow">${cq.q}</h3>
     </div>
     <div class="flex flex-col gap-2">
       ${opts.map(opt=>{
-        let cls='bg-white border-2 border-slate-200 text-slate-700';
-        let icon='';
+        let cls='bg-white border-2 border-slate-200 text-slate-700 hover:border-blue-400';
+        let ico='';
         if(q.answered){
-          if(opt===cq.a){cls='bg-green-50 border-2 border-green-500 text-green-900';icon=' ✅';}
-          else if(opt===q.selected){cls='bg-red-50 border-2 border-red-500 text-red-900';icon=' ❌';}
+          if(opt===cq.a){cls='bg-green-50 border-2 border-green-500 text-green-900';ico=' ✅';}
+          else if(opt===q.selected){cls='bg-red-50 border-2 border-red-500 text-red-900';ico=' ❌';}
           else cls='opacity-40 border border-slate-200 bg-slate-50 text-slate-400';
         }
-        return`<button onclick="doAnswer('${opt.replace(/'/g,"\\'")}','${cq.a.replace(/'/g,"\\'")}','${cq.n.replace(/'/g,"\\'")}')" ${q.answered?'disabled':''} class="p-3 rounded-2xl text-sm font-bold text-left transition-all ${cls}">${opt}${icon}</button>`;
+        return`<button onclick="doAnswer('${esc(opt)}','${esc(cq.a)}','${esc(cq.n)}')" ${q.answered?'disabled':''} class="p-3 rounded-2xl text-sm font-bold text-left transition-all ${cls}">${opt}${ico}</button>`;
       }).join('')}
     </div>
     ${q.answered?answerPanel(cq):''}
@@ -278,7 +306,7 @@ function answerPanel(cq){
   return`<div class="bg-white border border-slate-200 p-4 rounded-2xl shadow-sm space-y-3 fade">
     <div class="grid grid-cols-2 gap-2">
       <div class="bg-blue-50 border-l-4 border-blue-600 p-3 rounded-r-xl">
-        <div class="text-xs font-bold text-blue-600 mb-1">OFFICIEL</div>
+        <div class="text-xs font-bold text-blue-700 mb-1">OFFICIEL</div>
         <p class="font-bold text-xs" style="color:#0A2540">${cq.a}</p>
       </div>
       <div class="bg-green-50 border-l-4 border-green-500 p-3 rounded-r-xl">
@@ -286,33 +314,35 @@ function answerPanel(cq){
         <p class="font-bold text-xs italic text-green-900">« ${cq.n} »</p>
       </div>
     </div>
-    ${!q.memo&&!q.memoLoading?`<button onclick="getMemo('${cq.q.replace(/'/g,"\\'")}','${cq.a.replace(/'/g,"\\'")}'" ) class="text-xs font-bold text-amber-600 flex items-center gap-1 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">🧠 Astuce IA ✨</button>`:''}
+    <p class="text-xs text-slate-500 italic bg-slate-50 p-2 rounded-lg">${cq.det}</p>
+    ${!q.memo&&!q.memoLoading?`<button onclick="getMemo('${esc(cq.q)}','${esc(cq.a)}')" class="text-xs font-bold text-amber-600 flex items-center gap-1 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200 hover:bg-amber-100">🧠 Astuce mémorisation IA ✨</button>`:''}
     ${q.memoLoading?`<span class="text-amber-600 text-xs flex items-center gap-1"><span class="spin">⏳</span> Génération…</span>`:''}
     ${q.memo?`<div class="bg-amber-50 border border-amber-200 p-3 rounded-xl"><p class="text-xs text-amber-800 italic">✨ ${q.memo}</p></div>`:''}
-    ${!q.auto?`<button onclick="nextQ()" class="w-full text-white py-2.5 rounded-xl font-bold text-sm" style="background:#0055A4">Suivant ➡️</button>`
-    :`<p class="text-xs text-slate-400 text-center">Passage automatique dans quelques secondes…</p>`}
+    ${!q.auto?`<button onclick="nextQ()" class="w-full text-white py-2.5 rounded-xl font-bold text-sm hover:opacity-90" style="background:#0055A4">Question suivante ➡️</button>`
+    :`<p class="text-xs text-slate-400 text-center">⏱ Passage automatique dans quelques secondes…</p>`}
   </div>`;
 }
 
+// ─── SIMULATEUR ───
 function simHTML(){
   return`${keyModal()}${nav()}
   <div class="flex flex-col" style="height:calc(100vh - 57px)">
     <div class="bg-white border-b p-3 flex justify-between items-center shadow-sm">
       <div class="flex items-center gap-3">
         <span class="text-2xl">🏛️</span>
-        <div><div class="font-bold text-sm" style="color:#0A2540">Entretien de naturalisation</div><div class="text-xs text-slate-500">Agent virtuel IA</div></div>
+        <div><div class="font-bold text-sm" style="color:#0A2540">Entretien de naturalisation</div><div class="text-xs text-slate-500">Agent virtuel IA · Claude</div></div>
       </div>
       <div class="flex gap-2">
-        <button onclick="clearChat()" class="p-2 bg-red-50 text-red-400 rounded-xl text-sm" title="Recommencer">🔄</button>
-        <button onclick="go('home')" class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold">⏸ Pause</button>
+        <button onclick="clearChat()" class="p-2 bg-red-50 text-red-400 rounded-xl text-sm hover:bg-red-100" title="Recommencer">🔄</button>
+        <button onclick="go('home')" class="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-xl text-sm font-bold hover:bg-slate-200">⏸ Pause</button>
       </div>
     </div>
     <div id="chatBox" class="flex-1 overflow-y-auto p-4 space-y-4" style="background:#F8FAFC">
-      ${state.chat.map((m,i)=>`
+      ${state.chat.map(m=>`
       <div class="flex ${m.role==='ai'?'justify-start':'justify-end'}">
         <div class="max-w-xs md:max-w-md p-4 rounded-2xl text-sm shadow-sm ${m.role==='ai'?'bg-white border border-slate-200 rounded-tl-none':'text-white font-medium rounded-tr-none'}" style="${m.role!=='ai'?'background:#0055A4':''}">
           ${m.text}
-          ${m.role==='ai'?`<button onclick="speak('${m.text.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')" class="block mt-2 text-blue-500 text-xs">🔊 Écouter</button>`:''}
+          ${m.role==='ai'?`<button onclick="speak('${esc(m.text)}')" class="block mt-2 text-blue-500 text-xs hover:text-yellow-500">🔊 Écouter</button>`:''}
         </div>
       </div>`).join('')}
       ${state.chatLoading?`<div class="flex justify-start"><div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 text-slate-400 text-sm">⏳ L'agent réfléchit…</div></div>`:''}
@@ -321,15 +351,16 @@ function simHTML(){
     <div class="p-4 bg-white border-t border-slate-200">
       <form onsubmit="sendMsg(event)" class="flex gap-3 max-w-3xl mx-auto">
         <input id="chatIn" type="text" placeholder="Votre réponse…" class="flex-1 bg-slate-50 border border-slate-200 p-3 rounded-2xl text-sm outline-none focus:border-blue-500" ${state.chatLoading?'disabled':''}/>
-        <button type="submit" class="text-white px-4 rounded-2xl font-bold text-sm" style="background:#0055A4" ${state.chatLoading?'disabled':''}>📨</button>
+        <button type="submit" class="text-white px-4 rounded-2xl font-bold text-sm hover:opacity-90" style="background:#0055A4" ${state.chatLoading?'disabled':''}>📨</button>
       </form>
     </div>
   </div>`;
 }
 
+// ─── MARSEILLAISE ───
 function marseHTML(){
   return`${keyModal()}${nav()}
-  <div class="max-w-2xl mx-auto p-6 flex flex-col items-center gap-6">
+  <div class="max-w-2xl mx-auto p-6 flex flex-col items-center gap-6 pb-10">
     <div class="text-center">
       <div class="text-5xl mb-2">🇫🇷</div>
       <h2 class="text-3xl font-black text-blue-700 mb-1">La Marseillaise</h2>
@@ -337,80 +368,83 @@ function marseHTML(){
     </div>
     <div class="bg-white p-5 rounded-3xl border border-slate-200 w-full shadow-sm space-y-2">
       ${MARSE.map(item=>`
-      <div onclick="speak('${item.l.replace(/'/g,"\\'")}')" class="group cursor-pointer hover:bg-blue-50 p-4 rounded-2xl border border-transparent hover:border-blue-100 transition-all flex items-center justify-between gap-3">
+      <div onclick="speak('${esc(item.l)}')" class="group cursor-pointer hover:bg-blue-50 p-4 rounded-2xl border border-transparent hover:border-blue-100 transition-all flex items-center justify-between gap-3">
         <div>
-          <p class="text-lg font-black group-hover:text-blue-700" style="color:#0A2540">${item.l}</p>
+          <p class="text-base font-black group-hover:text-blue-700 transition-colors" style="color:#0A2540">${item.l}</p>
           <p class="text-xs text-slate-500 italic mt-0.5">${item.s}</p>
         </div>
-        <span class="text-yellow-500 opacity-0 group-hover:opacity-100">🔊</span>
+        <span class="text-yellow-500 opacity-0 group-hover:opacity-100 transition-all">🔊</span>
       </div>`).join('')}
     </div>
-    <button onclick="speak('${MARSE.map(m=>m.l).join(' ').replace(/'/g,"\\'")}')" class="text-white px-7 py-3 rounded-full font-bold flex items-center gap-2 shadow-lg" style="background:#EF4135">
+    <button onclick="speak('${esc(MARSE.map(m=>m.l).join(' '))}')" class="text-white px-7 py-3 rounded-full font-bold flex items-center gap-2 shadow-lg hover:opacity-90" style="background:#EF4135">
       🔊 Écouter le refrain complet
     </button>
   </div>`;
 }
 
+// ─── RÉSULTATS ───
 function resultsHTML(){
   const q=state.quiz;
   const pct=Math.round((q.score/QS.length)*100);
+  const msg=pct>=80?'Excellent ! Vous êtes prête 🎉':pct>=60?'Très bien, continuez ainsi !':'Bon courage, chaque essai compte !';
   return`${keyModal()}
   <div class="min-h-screen flex flex-col items-center justify-center p-10 text-center" style="background:#0A2540;color:white">
     <div class="text-7xl mb-5">🏆</div>
     <h2 class="text-4xl font-black mb-2">Bravo, Lioudmila !</h2>
-    <p class="text-blue-200 italic mb-6 max-w-sm">Chaque entraînement vous rapproche de votre objectif.</p>
+    <p class="text-blue-200 italic mb-2 max-w-sm">${msg}</p>
+    <p class="text-blue-300 text-sm mb-6 max-w-sm">Chaque entraînement vous rapproche de votre objectif.</p>
     <div class="text-6xl font-black mb-1">${q.score}<span class="text-2xl" style="color:#D4AF37"> / ${QS.length}</span></div>
-    <p class="font-bold text-lg mb-8" style="color:#D4AF37">${pct}% de réussite</p>
+    <p class="font-bold text-lg mb-10" style="color:#D4AF37">${pct}% de réussite</p>
     <div class="flex flex-col sm:flex-row gap-3">
-      <button onclick="startQuiz(false)" class="px-7 py-3 rounded-full font-black" style="background:#D4AF37;color:#0A2540">🔄 Recommencer</button>
-      <button onclick="go('home')" class="px-7 py-3 rounded-full font-black border border-white/20" style="background:rgba(255,255,255,.1)">🏠 Accueil</button>
+      <button onclick="startQuiz(false)" class="px-7 py-3 rounded-full font-black hover:opacity-90" style="background:#D4AF37;color:#0A2540">🔄 Recommencer</button>
+      <button onclick="go('home')" class="px-7 py-3 rounded-full font-black border border-white/20 hover:bg-white/10" style="background:rgba(255,255,255,.1)">🏠 Accueil</button>
     </div>
   </div>`;
 }
 
-// ── Actions ──
+// ─── ACTIONS ───
 function go(v){
   if(v==='sim'&&state.chat.length===0){
-    const m="Bonjour Lioudmila ! Je suis l'agent de préfecture. Pourriez-vous vous présenter brièvement ?";
-    state.chat=[{role:'ai',text:m}];save();setTimeout(()=>speak(m),300);
+    const m="Bonjour Lioudmila ! Je suis l'agent de préfecture. Bienvenue. Pourriez-vous vous présenter brièvement ?";
+    state.chat=[{role:'ai',text:m}];saveChat();setTimeout(()=>speak(m),300);
   }
   state.view=v;render();
 }
 function toggleRu(){state.showRu=!state.showRu;render();}
-function toggleKey(){state.showKeyModal=true;render();}
+function toggleKey(){state.showKeyModal=true;render();setTimeout(()=>{const el=document.getElementById('keyInput');if(el)el.focus();},50);}
 function closeKey(){state.showKeyModal=false;render();}
-function saveKey(){const k=document.getElementById('keyInput').value.trim();state.apiKey=k;localStorage.setItem('lm_k',k);state.showKeyModal=false;render();}
+function saveKey(){const k=(document.getElementById('keyInput')||{}).value||'';state.apiKey=k.trim();if(k.trim())localStorage.setItem('lm_k',k.trim());state.showKeyModal=false;render();}
 function doSearch(v){state.search=v;render();setTimeout(()=>{const el=document.getElementById('searchBox');if(el){el.focus();el.value=v;el.setSelectionRange(v.length,v.length);}},0);}
 
 function startQuiz(resume){
-  if(resume&&state.saved){
-    state.quiz.order=state.saved.order;state.quiz.idx=state.saved.idx;state.quiz.score=state.saved.score;
-  } else {
-    state.quiz.order=shuffle(QS.map((_,i)=>i),Date.now());state.quiz.idx=0;state.quiz.score=0;
-  }
+  if(resume&&state.saved){state.quiz.order=state.saved.order;state.quiz.idx=state.saved.idx;state.quiz.score=state.saved.score;}
+  else{state.quiz.order=shuffle(QS.map((_,i)=>i),Date.now());state.quiz.idx=0;state.quiz.score=0;}
   state.quiz.answered=false;state.quiz.selected=null;state.quiz.memo='';state.quiz.timer=30;
   state.view='quiz';render();startTimer();
 }
 function pauseQuiz(){
-  state.saved={order:state.quiz.order,idx:state.quiz.idx,score:state.quiz.score};
-  localStorage.setItem('lm_s',JSON.stringify(state.saved));
-  clearInterval(window._timer);state.view='home';render();
+  const s={order:state.quiz.order,idx:state.quiz.idx,score:state.quiz.score};
+  localStorage.setItem('lm_s3',JSON.stringify(s));state.saved=s;
+  clearInterval(window._tmr);state.view='home';render();
 }
 function toggleAuto(){state.quiz.auto=!state.quiz.auto;render();}
 
-let _timer=null;
 function startTimer(){
-  clearInterval(_timer);
-  _timer=setInterval(()=>{
-    if(state.view!=='quiz'||state.quiz.answered){clearInterval(_timer);return;}
+  clearInterval(window._tmr);
+  window._tmr=setInterval(()=>{
+    if(state.view!=='quiz'||state.quiz.answered){clearInterval(window._tmr);return;}
     state.quiz.timer--;
-    if(state.quiz.timer<=0){clearInterval(_timer);doAnswer(null,QS[state.quiz.order[state.quiz.idx]].a,'');}
-    else render();
+    if(state.quiz.timer<=0){clearInterval(window._tmr);const cq=QS[state.quiz.order[state.quiz.idx]];doAnswer('',cq.a,cq.n);}
+    else{
+      const el=document.querySelector('.font-mono.font-bold.text-sm');
+      if(el){el.textContent=state.quiz.timer+'s';el.className='font-mono font-bold text-sm px-2 '+(state.quiz.timer<10?'text-red-500':'text-slate-700');}
+    }
   },1000);
 }
 
 function doAnswer(opt,correct,nat){
   if(state.quiz.answered)return;
+  clearInterval(window._tmr);
   state.quiz.selected=opt;state.quiz.answered=true;
   if(opt===correct){state.quiz.score++;speak("Excellent, bonne réponse Lioudmila !");}
   else speak("Pas de souci, on retient ça ensemble.");
@@ -419,50 +453,38 @@ function doAnswer(opt,correct,nat){
 }
 async function getMemo(q,a){
   state.quiz.memoLoading=true;render();
-  const r=await callClaude(`Astuce courte (2 phrases) pour mémoriser que la réponse à "${q}" est "${a}". Lioudmila est russe.`);
+  const r=await callClaude('Donne une astuce courte et amusante (2 phrases max) pour mémoriser que la réponse à "'+q+'" est "'+a+'". Lioudmila est russe, sois créatif.');
   state.quiz.memo=r;state.quiz.memoLoading=false;render();
 }
 function nextQ(){
-  clearInterval(_timer);
-  if(state.quiz.idx+1<QS.length){
-    state.quiz.idx++;state.quiz.answered=false;state.quiz.selected=null;state.quiz.memo='';state.quiz.timer=30;
-    render();startTimer();
-  } else {
-    localStorage.removeItem('lm_s');state.saved=null;state.view='results';render();
-  }
+  clearInterval(window._tmr);
+  if(state.quiz.idx+1<QS.length){state.quiz.idx++;state.quiz.answered=false;state.quiz.selected=null;state.quiz.memo='';state.quiz.timer=30;render();startTimer();}
+  else{localStorage.removeItem('lm_s3');state.saved=null;state.view='results';render();}
 }
 
 async function explainItem(id,q,a){
   state.aiExpand[id]='loading';render();
-  const r=await callClaude(`Explique en 3 phrases simples pourquoi "${q}" est important en France. Réponse : "${a}".`);
+  const r=await callClaude('Explique en 3 phrases simples et encourageantes pourquoi "'+q+'" est important pour vivre en France. Réponse correcte : "'+a+'".');
   state.aiExpand[id]=r;render();
 }
-function clearExplain(id){state.aiExpand[id]=null;render();}
+function clearExp(id){state.aiExpand[id]=null;render();}
 
 async function sendMsg(e){
   e.preventDefault();
   const inp=document.getElementById('chatIn');
   if(!inp||!inp.value.trim()||state.chatLoading)return;
   const txt=inp.value.trim();
-  state.chat.push({role:'user',text:txt});inp.value='';save();
+  state.chat.push({role:'user',text:txt});inp.value='';saveChat();
   state.chatLoading=true;render();
-  const ctx=state.chat.map(m=>`${m.role==='ai'?'Agent':'Lioudmila'}: ${m.text}`).join('\n');
-  const r=await callClaude(`${ctx}\n\nAgent: (2-3 phrases encourageantes, puis pose une question sur la France.)`);
-  state.chat.push({role:'ai',text:r});save();state.chatLoading=false;render();speak(r);
+  const ctx=state.chat.map(m=>(m.role==='ai'?'Agent':'Lioudmila')+': '+m.text).join('\n');
+  const r=await callClaude(ctx+'\n\nAgent: (Réponds en 2-3 phrases en français, sois encourageant. Pose ensuite une question sur les valeurs, l\'histoire ou les institutions françaises.)');
+  state.chat.push({role:'ai',text:r});saveChat();state.chatLoading=false;render();speak(r);
 }
-function clearChat(){window.speechSynthesis?.cancel();state.chat=[];localStorage.removeItem('lm_c');state.view='home';render();}
-function scrollChat(){setTimeout(()=>{const el=document.getElementById('chatEnd');if(el)el.scrollIntoView({behavior:'smooth'});},100);}
+function clearChat(){window.speechSynthesis&&window.speechSynthesis.cancel();state.chat=[];localStorage.removeItem('lm_c3');state.view='home';render();}
 
-function bindEvents(){}
-
-// ── Init ──
-window.go=go;window.toggleRu=toggleRu;window.toggleKey=toggleKey;window.closeKey=closeKey;window.saveKey=saveKey;
-window.doSearch=doSearch;window.startQuiz=startQuiz;window.pauseQuiz=pauseQuiz;window.toggleAuto=toggleAuto;
-window.doAnswer=doAnswer;window.getMemo=getMemo;window.nextQ=nextQ;window.explainItem=explainItem;
-window.clearExplain=clearExplain;window.sendMsg=sendMsg;window.clearChat=clearChat;window.speak=speak;
-
+// ─── INIT ───
 load();
-window.speechSynthesis?.addEventListener('voiceschanged',()=>{});
+window.speechSynthesis&&window.speechSynthesis.addEventListener('voiceschanged',()=>{});
 render();
 </script>
 </body>
